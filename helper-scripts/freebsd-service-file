@@ -1,0 +1,24 @@
+# /usr/local/etc/rc.d/go_linkr
+
+#!/bin/sh
+
+# PROVIDE: go_linkr
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="go_linkr"
+rcvar="go_linkr_enable"
+
+load_rc_config $name
+
+: ${go_linkr_enable:="NO"}
+: ${go_linkr_db_path:="/usr/local/etc/go_linkr/links.db"}
+: ${executable_path:="/usr/local/bin/go_linkr"}
+
+pidfile="/var/run/${name}.pid"
+command="/usr/sbin/daemon"
+command_args="-P ${pidfile} -o /var/log/go_linkr.log -r -c ${executable_path} -db ${go_linkr_db_path}"
+
+run_rc_command "$1"

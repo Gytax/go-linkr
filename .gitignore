@@ -1,0 +1,12 @@
+# Ignore the local database
+go-linkr-db.db*
+
+# Go build and test outputs
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go_linkr
